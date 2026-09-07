@@ -24,9 +24,18 @@ Don't rush to Save just to close out the session — that's the last step, not a
 - **A lesson is done when it gives full intuition, not when every section is filled in.** Cut sections that don't earn their place for this specific topic. Don't pad for the sake of looking complete — a short lesson that's actually clear beats a long one covering every angle.
 - Use as many diagrams as actually clarify the mechanism — zero, one, or several. One diagram trying to show structure *and* request flow *and* failure modes is worse than three small ones, each showing one thing.
 
+## Big topics
+
+If the topic naturally splits into several sub-concepts each substantial enough for their own lesson (e.g. "Scaling from 0 to millions" → single server, load balancer, cache, ...), run Steps 1–3 below **once per subtopic**, in teaching order, each in its own subfolder — don't cram them all into one `lesson.md`.
+
+- `<topic_path>` = `topics/<NN>_<Topic>`, the numbered folder convention owned by the `system-design-notes` skill (highest existing number + 1, zero-padded, e.g. `topics/01_Network_Protocols/`) — reuse it, don't invent a different one.
+- Subtopic path: `<topic_path>/<MM>_<Subtopic>/` (`<MM>` = `01`, `02`, ... in teaching order), same `lesson.md` + `README.md` + `diagrams/` layout as any topic.
+- `<topic_path>/README.md` gets written once (after the last subtopic, or updated as you go) — a short summary of the overall arc, linking to each subtopic's `README.md`. No `<topic_path>/lesson.md` — depth lives in the subtopics.
+- Below, `<path>` means the subtopic path (`<topic_path>/<MM>_<Subtopic>`) for a big topic, or plain `<topic_path>` for a topic with no subtopics.
+
 ## Step 1 — Lesson
 
-Write `topics/<NN>_<Topic>/lesson.md`. `<NN>_<Topic>` is the numbered folder convention owned by the `system-design-notes` skill (highest existing number + 1, zero-padded, e.g. `topics/01_Network_Protocols/`) — reuse it, don't invent a different one.
+Write `<path>/lesson.md`.
 
 Pull from whichever of these actually build intuition for *this* topic — skip what doesn't:
 
@@ -54,7 +63,7 @@ Keep going until they can do a Feynman check or a you-do-one unaided. That's the
 
 Once they've genuinely got it:
 
-1. **Notes** — invoke the `system-design-notes` skill to write/update `topics/<NN>_<Topic>/README.md` (terse quick-reference, separate from the in-depth lesson).
+1. **Notes** — invoke the `system-design-notes` skill to write/update `<path>/README.md` (terse quick-reference, separate from the in-depth lesson).
 2. **Flashcards** — 5–12 atomic cards (one fact/concept each — split comparisons into one card per item). Rules:
    - Question: specific, unambiguous, ≤300 chars
    - Answer: direct and complete on its own, ≤500 chars
@@ -72,10 +81,10 @@ Once they've genuinely got it:
    [2-3 sentences]
 
    ## Lesson
-   [GitHub link to topics/<NN>_<Topic>/lesson.md]
+   [GitHub link to <path>/lesson.md]
 
    ## Notes
-   [GitHub link to topics/<NN>_<Topic>/README.md]
+   [GitHub link to <path>/README.md]
    ```
 4. **Spaced review schedule** — actual dates. Default: Day 0 → 2 → 5 → 12 → 26 → 45. Compress for a deadline (exam in a week: today, +1, +3, +6; exam tomorrow: today/tonight/morning-of, and say plainly this trades retention for a short-term boost). Each review = recall the flashcards + resolve one problem, not passive re-reading. Give this in chat — no separate push needed.
 
@@ -83,8 +92,8 @@ Once they've genuinely got it:
 
 Whenever a diagram would clarify part of the lesson, use the `d2-diagram` skill to write the D2 source, then render and embed it — never leave a diagram as unrendered source. There can be more than one; give each a descriptive name rather than numbering them generically:
 
-1. Save source to `topics/<NN>_<Topic>/diagrams/<descriptive-name>.d2`.
-2. Render: `d2 <path>.d2 <path>.svg`
+1. Save source to `<path>/diagrams/<descriptive-name>.d2`.
+2. Render: `d2 <file>.d2 <file>.svg`, where `<file>` is that same path without extension.
 3. Embed in the markdown: `![<Label>](diagrams/<descriptive-name>.svg)`
 
 Re-render step 2 any time a `.d2` source changes.
@@ -93,7 +102,7 @@ Re-render step 2 any time a `.d2` source changes.
 
 Commit `lesson.md` and `README.md` (ask before pushing, per normal git rules). Hand over both GitHub links plus the next concrete action ("next review is [date], ~10 min"). Encouraging, concrete.
 
-Links are `<remote>/blob/<branch>/topics/<NN>_<Topic>/lesson.md` and `.../README.md` (drop the `.git` from the remote URL, e.g. `https://github.com/<owner>/<repo>/blob/main/topics/<NN>_<Topic>/lesson.md`) — read the remote and branch from `git remote get-url origin` and `git branch --show-current` rather than guessing. They only resolve once pushed; say so if they aren't yet.
+Links are `<remote>/blob/<branch>/<path>/lesson.md` and `.../README.md` (drop the `.git` from the remote URL, e.g. `https://github.com/<owner>/<repo>/blob/main/<path>/lesson.md`) — read the remote and branch from `git remote get-url origin` and `git branch --show-current` rather than guessing. They only resolve once pushed; say so if they aren't yet.
 
 ## Output template
 
@@ -106,10 +115,10 @@ End-of-session chat reply: the same block pushed as the session note (Step 3 abo
 [2-3 sentences]
 
 ## Lesson
-[GitHub link to topics/<NN>_<Topic>/lesson.md]
+[GitHub link to <path>/lesson.md]
 
 ## Notes
-[GitHub link to topics/<NN>_<Topic>/README.md]
+[GitHub link to <path>/README.md]
 
 ## Flashcards
 [Confirmation of how many were pushed via add_cards_bulk, or "MCP not connected" fallback]

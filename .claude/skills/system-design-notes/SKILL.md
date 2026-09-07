@@ -16,9 +16,20 @@ Inside that folder:
 - `lesson.md` — in-depth lesson (the `study-session` skill)
 - `diagrams/<name>.d2` / `.svg` — as many as needed, shared by both
 
+## Big topics
+
+If a topic naturally splits into several sub-concepts each substantial enough for their own lesson (e.g. "Scaling from 0 to millions" → single server, load balancing, caching, ...), don't cram all of it into one `lesson.md`. Instead:
+
+- The topic folder itself (`topics/<NN>_<Name>/`) holds only `README.md` — a short summary of the overall arc plus a list linking to each subtopic. No top-level `lesson.md`.
+- Each subtopic gets its own numbered folder *inside* the topic folder, following the exact same convention: `topics/<NN>_<Name>/<MM>_<Subtopic>/README.md` + `lesson.md` + `diagrams/`. `<MM>` numbers the subtopics in teaching order (start at `01`), independent of the parent's `<NN>`.
+
+The parent `README.md`'s "Diagram(s)" section, if used, should show how the subtopics relate to each other — not repeat a diagram that belongs inside a subtopic.
+
+Below, `<folder>` means `topics/<NN>_<Name>` for a topic with no subtopics, or `topics/<NN>_<Name>/<MM>_<Subtopic>` when writing one of its subtopics.
+
 ## Adding a topic
 
-Create `topics/<NN>_<Name>/README.md` with these sections:
+Create `<folder>/README.md` with these sections:
 
 1. **Problem** — what real need this solves, 2-3 sentences.
 2. **Core idea** — the mechanism, in plain language.
@@ -32,15 +43,15 @@ Keep entries short — a working mental model, not a textbook chapter. Don't pad
 
 When a diagram would help, use the `d2-diagram` skill to write the D2 source, then render and embed it. There can be more than one — one per distinct thing worth visualizing (structure, request flow, failure mode), not one diagram trying to show everything:
 
-1. Save source to `topics/<NN>_<Name>/diagrams/<descriptive-name>.d2`.
-2. Render: `d2 <path>.d2 <path>.svg`
+1. Save source to `<folder>/diagrams/<descriptive-name>.d2`.
+2. Render: `d2 <file>.d2 <file>.svg`, where `<file>` is that same path without extension.
 3. Embed in the README: `![<Label>](diagrams/<descriptive-name>.svg)`
 
 Re-render (step 2) every time a `.d2` source changes, so the embedded SVG never goes stale.
 
 ## Reviewing a topic
 
-Read the existing `topics/<NN>_<Name>/README.md`, check it against the 5 sections above, and flag gaps or outdated trade-offs rather than rewriting from scratch.
+Read the existing `<folder>/README.md`, check it against the 5 sections above, and flag gaps or outdated trade-offs rather than rewriting from scratch.
 
 ## Index
 

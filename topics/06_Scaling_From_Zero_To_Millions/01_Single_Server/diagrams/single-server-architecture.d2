@@ -1,0 +1,28 @@
+direction: right
+
+user: User {
+  shape: person
+}
+
+dns: DNS {
+  shape: cloud
+}
+
+server: Single Server {
+  style.fill: "#E3F2FD"
+  style.stroke: "#1976D2"
+
+  web: Web/App Process {
+    shape: rectangle
+  }
+
+  db: Database {
+    shape: cylinder
+  }
+
+  web -> db: local calls (same disk/CPU)
+}
+
+user -> dns: 1. resolve domain
+dns -> user: 2. return server IP
+user -> server.web: 3. HTTP request
