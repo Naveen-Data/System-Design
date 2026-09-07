@@ -1,0 +1,5 @@
+- [Network Protocols](01_Network_Protocols/README.md) — TCP/TLS/DNS/HTTP2/WebSockets/L4-L7, the foundation every other pattern sits on.
+- [CAP Theorem](02_CAP_Theorem/README.md) — during a partition, pick Consistency or Availability, per domain.
+- [Microservices & Saga Pattern](03_Microservices_Saga_Pattern/README.md) — independent services lose ACID transactions; Saga compensates instead.
+- [CQRS](04_CQRS/README.md) — separate read/write models synced via events.
+- [Strangler Fig Pattern](05_Strangler_Fig_Pattern/README.md) — migrate a monolith incrementally via path-based routing.

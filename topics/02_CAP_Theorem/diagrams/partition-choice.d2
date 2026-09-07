@@ -1,0 +1,21 @@
+partition: {
+  label: "Network partition"
+  style.stroke-dash: 3
+  regionA: "Region A"
+  regionB: "Region B"
+}
+
+partition.regionA -> partition.regionB: "X (link down)" {
+  style.stroke: red
+}
+
+choice: "Pick one" {
+  shape: diamond
+}
+
+cp: "CP\nRefuse/block, stay correct"
+ap: "AP\nAnswer, may be stale"
+
+partition -> choice
+choice -> cp
+choice -> ap

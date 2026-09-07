@@ -1,0 +1,12 @@
+shape: sequence_diagram
+
+client: Client
+server: Server
+
+client -> server: "1. SYN (seq=X)"
+server -> client: "2. SYN-ACK (seq=Y, ack=X+1)"
+client -> server: "3. ACK (ack=Y+1)"
+client -> server: "4. TLS ClientHello"
+server -> client: "5. ServerHello + Certificate"
+client -> server: "6. Key exchange\n(derive shared secret)"
+client <-> server: "7. Symmetric-encrypted\nHTTP traffic"

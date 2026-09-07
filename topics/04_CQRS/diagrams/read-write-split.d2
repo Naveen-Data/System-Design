@@ -1,0 +1,16 @@
+client: Client
+
+command_side: "Command side" {
+  model: "Normalized model\n(validation)"
+}
+
+query_side: "Query side" {
+  model: "Denormalized model\n(fast reads)"
+}
+
+events: "Event bus"
+
+client -> command_side.model: "write"
+command_side.model -> events: "emits event"
+events -> query_side.model: "updates (async)"
+client -> query_side.model: "read"

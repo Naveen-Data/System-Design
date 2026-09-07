@@ -1,0 +1,20 @@
+orchestration: "Orchestration" {
+  orchestrator: "Orchestrator"
+  inventory: "Inventory Service"
+  payment: "Payment Service"
+  shipping: "Shipping Service"
+
+  orchestrator -> inventory: "1. Reserve"
+  orchestrator -> payment: "2. Charge (fails)" {style.stroke: red}
+  orchestrator -> inventory: "3. Compensate: release" {style.stroke: red}
+}
+
+choreography: "Choreography" {
+  inventory: "Inventory Service"
+  payment: "Payment Service"
+  shipping: "Shipping Service"
+
+  inventory -> payment: "event: reserved"
+  payment -> shipping: "event: charged"
+  payment -> inventory: "event: charge_failed\n(compensate)" {style.stroke: red}
+}

@@ -1,0 +1,8 @@
+client: Client
+gateway: "L7 Gateway"
+monolith: Monolith
+checkout: "checkout-service\n(migrated)"
+
+client -> gateway
+gateway -> checkout: "/checkout" {style.stroke: green}
+gateway -> monolith: "/search, /account\n(not yet migrated)"
