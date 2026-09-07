@@ -100,9 +100,9 @@ Re-render step 2 any time a `.d2` source changes.
 
 ## Close
 
-Commit `lesson.md` and `README.md` (ask before pushing, per normal git rules). Hand over both GitHub links plus the next concrete action ("next review is [date], ~10 min"). Encouraging, concrete.
+Commit `lesson.md` and `README.md`, then push (the user has pre-authorized pushing after every lesson so the GitHub links resolve — no need to ask each time). Hand over both GitHub links plus the next concrete action ("next review is [date], ~10 min"). Encouraging, concrete.
 
-Links are `<remote>/blob/<branch>/<path>/lesson.md` and `.../README.md` (drop the `.git` from the remote URL, e.g. `https://github.com/<owner>/<repo>/blob/main/<path>/lesson.md`) — read the remote and branch from `git remote get-url origin` and `git branch --show-current` rather than guessing. They only resolve once pushed; say so if they aren't yet.
+Links are `<remote>/blob/<branch>/<path>/lesson.md` and `.../README.md` (drop the `.git` from the remote URL, e.g. `https://github.com/<owner>/<repo>/blob/main/<path>/lesson.md`) — read the remote and branch from `git remote get-url origin` and `git branch --show-current` rather than guessing.
 
 ## Output template
 
