@@ -70,8 +70,10 @@ Once they've genuinely got it:
    - Prefer "apply it" over "define it" — test recall, not recognition
    - No walls of text — if the answer needs more than 2 sentences, it's two cards
    - Lists/steps: bullet format `• point one\n• point two` (literal `\n` for line breaks in Telegram)
+   - `topic`: always `system-design` — the one coarse bucket for every card from this repo. Don't repeat it inside `tags`.
+   - `tags`: the specific concept(s) only, comma-separated, lowercase-hyphenated (e.g. `cap-theorem`, or `scaling,single-server` for a "Scaling from 0 to millions" subtopic) — no repo-wide label, `topic` already carries that.
 
-   Show as a table, then push via `add_cards_bulk` on the study-bot MCP. Confirm how many were added. If the MCP isn't connected this session, say so and fall back to just the table.
+   Show as a table (columns: question, answer, tags — topic is implicit and doesn't need its own column since it's always `system-design`), then push via `add_cards_bulk` on the study-bot MCP, passing `topic: "system-design"` on every card alongside its `tags`. Confirm how many were added. If the MCP isn't connected this session, say so and fall back to just the table.
 3. **Session note** — push via `add_session_note` on the study-bot MCP, content in exactly this format (links use the GitHub URL format from Close below):
 
    ```
