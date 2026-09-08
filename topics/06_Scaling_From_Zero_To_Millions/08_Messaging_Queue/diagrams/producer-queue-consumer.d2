@@ -1,0 +1,34 @@
+direction: right
+
+user: User { shape: person }
+
+app: App Server (Producer) {
+  shape: rectangle
+}
+
+queue: Message Queue {
+  shape: queue
+  style.fill: "#FFF9C4"
+  style.stroke: "#F9A825"
+}
+
+workers: Workers (Consumers) {
+  direction: down
+  w1: Worker 1
+  w2: Worker 2
+  w3: Worker 3
+}
+
+email: Email Service {
+  shape: cloud
+}
+
+user -> app: 1. signup request
+app -> user: 2. "Signup successful!" (immediate)
+app -> queue: 3. publish "send_welcome_email" message {
+  style.stroke: "#1976D2"
+}
+queue -> workers.w1: 4. worker pulls message when free {
+  style.stroke-dash: 4
+}
+workers.w1 -> email: 5. send email (can take time)
