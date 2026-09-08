@@ -1,0 +1,34 @@
+direction: right
+
+user: User {
+  shape: person
+}
+
+edge: Nearby CDN Edge {
+  shape: stored_data
+  style.fill: "#FFF9C4"
+  style.stroke: "#F9A825"
+}
+
+origin: Origin Server {
+  shape: rectangle
+  style.fill: "#E3F2FD"
+  style.stroke: "#1976D2"
+}
+
+user -> edge: 1. request asset
+edge -> user: 2a. HIT — return cached copy (~10-20ms) {
+  style.stroke: "#2E7D32"
+}
+edge -> origin: 2b. MISS — fetch from origin {
+  style.stroke: "#C62828"
+  style.stroke-dash: 4
+}
+origin -> edge: 3. store at edge (with TTL) {
+  style.stroke: "#C62828"
+  style.stroke-dash: 4
+}
+edge -> user: 4. return asset {
+  style.stroke: "#C62828"
+  style.stroke-dash: 4
+}

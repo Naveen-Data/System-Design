@@ -1,0 +1,41 @@
+direction: down
+
+origin: Origin Server {
+  shape: rectangle
+  style.fill: "#E3F2FD"
+  style.stroke: "#1976D2"
+}
+
+edges: CDN Edge Locations {
+  direction: right
+
+  edge_us: Edge (US)
+  edge_eu: Edge (EU)
+  edge_in: Edge (India)
+}
+
+user_us: User (US) {
+  shape: person
+}
+
+user_eu: User (EU) {
+  shape: person
+}
+
+user_in: User (India) {
+  shape: person
+}
+
+user_us -> edges.edge_us: short trip
+user_eu -> edges.edge_eu: short trip
+user_in -> edges.edge_in: short trip
+
+edges.edge_us -> origin: only on a miss {
+  style.stroke-dash: 4
+}
+edges.edge_eu -> origin: only on a miss {
+  style.stroke-dash: 4
+}
+edges.edge_in -> origin: only on a miss {
+  style.stroke-dash: 4
+}
