@@ -1,0 +1,41 @@
+direction: right
+
+app: App Server {
+  shape: rectangle
+}
+
+router: Shard Router {
+  shape: hexagon
+  style.fill: "#B39DDB"
+}
+
+shard_a: Shard A (users 0-33) {
+  shape: cylinder
+  style.fill: "#E8F5E9"
+  style.stroke: "#2E7D32"
+}
+
+shard_b: Shard B (users 34-66) {
+  shape: cylinder
+  style.fill: "#E8F5E9"
+  style.stroke: "#2E7D32"
+}
+
+shard_c: Shard C (users 67-99) {
+  shape: cylinder
+  style.fill: "#E8F5E9"
+  style.stroke: "#2E7D32"
+}
+
+app -> router: write for user 12345
+router -> shard_a: hash(12345) % 3 == 0 {
+  style.stroke: "#2E7D32"
+}
+router -> shard_b: (not routed here) {
+  style.stroke-dash: 4
+  style.stroke: "#9E9E9E"
+}
+router -> shard_c: (not routed here) {
+  style.stroke-dash: 4
+  style.stroke: "#9E9E9E"
+}

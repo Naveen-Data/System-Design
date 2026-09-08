@@ -3,3 +3,4 @@
 - [Microservices & Saga Pattern](03_Microservices_Saga_Pattern/README.md) — independent services lose ACID transactions; Saga compensates instead.
 - [CQRS](04_CQRS/README.md) — separate read/write models synced via events.
 - [Strangler Fig Pattern](05_Strangler_Fig_Pattern/README.md) — migrate a monolith incrementally via path-based routing.
+- [Scaling From Zero To Millions](06_Scaling_From_Zero_To_Millions/README.md) — from one machine to millions of users: resource contention → SPOF → read scaling → latency → write scaling, one bottleneck fixed per step.
