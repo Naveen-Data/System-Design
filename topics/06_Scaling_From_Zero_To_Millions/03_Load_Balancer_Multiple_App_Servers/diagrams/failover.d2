@@ -1,0 +1,30 @@
+direction: right
+
+lb: Load Balancer {
+  shape: hexagon
+  style.fill: "#B39DDB"
+}
+
+apps: App Servers {
+  direction: down
+
+  app1: App Server 1 {
+    style.fill: "#C8E6C9"
+  }
+
+  app2: App Server 2 (DOWN) {
+    style.fill: "#FFCDD2"
+    style.stroke: "#C62828"
+  }
+
+  app3: App Server 3 {
+    style.fill: "#C8E6C9"
+  }
+}
+
+lb -> apps.app1: healthy — routed
+lb -> apps.app2: health check fails {
+  style.stroke-dash: 4
+  style.stroke: "#C62828"
+}
+lb -> apps.app3: healthy — routed

@@ -1,0 +1,35 @@
+direction: right
+
+user: User {
+  shape: person
+}
+
+dns: DNS {
+  shape: cloud
+}
+
+lb: Load Balancer {
+  shape: hexagon
+  style.fill: "#B39DDB"
+}
+
+apps: App Servers {
+  direction: down
+  app1: App Server 1
+  app2: App Server 2
+  app3: App Server 3
+}
+
+db: DB Server {
+  shape: cylinder
+  style.fill: "#E8F5E9"
+  style.stroke: "#2E7D32"
+}
+
+user -> dns: 1. resolve domain
+dns -> user: 2. return LB's IP
+user -> lb: 3. HTTP request
+lb -> apps.app1: 4. picks one (round robin / least connections)
+apps.app1 -> db: 5. query
+apps.app2 -> db
+apps.app3 -> db
