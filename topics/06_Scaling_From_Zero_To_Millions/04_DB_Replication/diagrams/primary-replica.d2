@@ -1,0 +1,27 @@
+direction: right
+
+apps: App Servers {
+  shape: rectangle
+}
+
+primary: Primary DB {
+  shape: cylinder
+  style.fill: "#E8F5E9"
+  style.stroke: "#2E7D32"
+}
+
+replicas: Read Replicas {
+  direction: down
+  r1: Replica 1
+  r2: Replica 2
+}
+
+apps -> primary: writes (INSERT/UPDATE)
+primary -> replicas.r1: async replication {
+  style.stroke-dash: 4
+}
+primary -> replicas.r2: async replication {
+  style.stroke-dash: 4
+}
+apps -> replicas.r1: reads (SELECT)
+apps -> replicas.r2: reads (SELECT)
