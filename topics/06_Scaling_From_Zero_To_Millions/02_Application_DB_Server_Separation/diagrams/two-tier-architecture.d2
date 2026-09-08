@@ -1,0 +1,28 @@
+direction: right
+
+user: User {
+  shape: person
+}
+
+dns: DNS {
+  shape: cloud
+}
+
+app: App Server {
+  shape: rectangle
+  style.fill: "#E3F2FD"
+  style.stroke: "#1976D2"
+}
+
+db: DB Server {
+  shape: cylinder
+  style.fill: "#E8F5E9"
+  style.stroke: "#2E7D32"
+}
+
+user -> dns: 1. resolve domain
+dns -> user: 2. return app server IP
+user -> app: 3. HTTP request
+app -> db: 4. query over the network
+db -> app: 5. rows back
+app -> user: 6. HTTP response
