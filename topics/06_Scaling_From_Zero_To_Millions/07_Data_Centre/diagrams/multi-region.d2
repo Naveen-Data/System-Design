@@ -1,0 +1,42 @@
+direction: down
+
+geodns: GeoDNS {
+  shape: cloud
+}
+
+us: US-East DC {
+  direction: right
+  lb_us: LB
+  app_us: App Servers
+  db_us: Primary DB {
+    shape: cylinder
+    style.fill: "#E8F5E9"
+    style.stroke: "#2E7D32"
+  }
+  lb_us -> app_us
+  app_us -> db_us
+}
+
+eu: EU DC {
+  direction: right
+  lb_eu: LB
+  app_eu: App Servers
+  db_eu: Read Replica {
+    shape: cylinder
+  }
+  lb_eu -> app_eu
+  app_eu -> db_eu
+}
+
+user_us: User (US) { shape: person }
+user_eu: User (EU) { shape: person }
+
+user_us -> geodns
+user_eu -> geodns
+geodns -> us.lb_us: routes to nearest healthy DC
+geodns -> eu.lb_eu: routes to nearest healthy DC
+
+eu.app_eu -> us.db_us: writes cross region to the one primary {
+  style.stroke-dash: 4
+  style.stroke: "#C62828"
+}
