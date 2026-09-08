@@ -1,0 +1,34 @@
+direction: right
+
+app: App Server {
+  shape: rectangle
+}
+
+cache: Cache (Redis) {
+  shape: stored_data
+  style.fill: "#FFF9C4"
+  style.stroke: "#F9A825"
+}
+
+db: Primary/Replica DB {
+  shape: cylinder
+  style.fill: "#E8F5E9"
+  style.stroke: "#2E7D32"
+}
+
+app -> cache: 1. check cache for key
+cache -> app: 2a. HIT — return cached value {
+  style.stroke: "#2E7D32"
+}
+cache -> db: 2b. MISS — query DB {
+  style.stroke: "#C62828"
+  style.stroke-dash: 4
+}
+db -> cache: 3. store result (with TTL) {
+  style.stroke: "#C62828"
+  style.stroke-dash: 4
+}
+cache -> app: 4. return value {
+  style.stroke: "#C62828"
+  style.stroke-dash: 4
+}
