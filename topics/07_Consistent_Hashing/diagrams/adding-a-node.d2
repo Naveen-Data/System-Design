@@ -1,0 +1,26 @@
+direction: right
+
+before: Before — 3 servers {
+  direction: down
+  a1: Server A owns arc 1
+  b1: Server B owns arc 2
+  c1: Server C owns arc 3
+}
+
+after: After adding Server D {
+  direction: down
+  a2: Server A owns arc 1 (unchanged) {
+    style.fill: "#C8E6C9"
+  }
+  b2: Server B owns arc 2 (unchanged) {
+    style.fill: "#C8E6C9"
+  }
+  d2: Server D owns part of arc 3 (new) {
+    style.fill: "#FFCDD2"
+  }
+  c2: Server C owns the rest of arc 3 (smaller now) {
+    style.fill: "#FFF9C4"
+  }
+}
+
+before -> after: only the keys in Server D's new slice move — everything else stays put

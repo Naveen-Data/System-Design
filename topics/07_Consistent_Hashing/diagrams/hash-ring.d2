@@ -1,0 +1,17 @@
+direction: right
+
+ring: Hash Ring (0 to 2^32-1, wraps around) {
+  shape: circle
+  style.fill: "#F3E5F5"
+  style.stroke: "#7B1FA2"
+
+  server_a: Server A
+  server_b: Server B
+  server_c: Server C
+
+  key1: key "user:42"
+  key2: key "user:99"
+}
+
+ring.key1 -> ring.server_b: owned by next server clockwise
+ring.key2 -> ring.server_c: owned by next server clockwise

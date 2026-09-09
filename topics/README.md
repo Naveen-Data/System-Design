@@ -4,3 +4,4 @@
 - [CQRS](04_CQRS/README.md) — separate read/write models synced via events.
 - [Strangler Fig Pattern](05_Strangler_Fig_Pattern/README.md) — migrate a monolith incrementally via path-based routing.
 - [Scaling From Zero To Millions](06_Scaling_From_Zero_To_Millions/README.md) — from one machine to millions of users: resource contention → SPOF → read scaling → latency → write scaling, one bottleneck fixed per step.
+- [Consistent Hashing](07_Consistent_Hashing/README.md) — hash % N scrambles almost everything when N changes; a ring-based hash fixes that to ~1/N reassigned per membership change.
